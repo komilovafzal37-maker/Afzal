@@ -1,15 +1,21 @@
 import asyncio
-
+import os   
+from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, F
 from aiogram.types import (
     Message,
     ReplyKeyboardMarkup,
     KeyboardButton
-)
+)   
 
-BOT_TOKEN = "8781012468:AAGvI-VXhw5oA6zZJHuqEkC562jEZvATb_0"
+
+load_dotenv()
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+ADMIN_ID = int(os.getenv("ADMIN_ID"))
 
 bot = Bot(token=BOT_TOKEN)
+
 dp = Dispatcher()
 
 lessons = {
@@ -232,7 +238,6 @@ async def lessons_handler(message: Message):
         for topic_name, topic_data in category.items():
 
             if message.text == topic_name:
-
                 code = topic_data["code"]
                 text = topic_data["text"]
 
@@ -255,11 +260,11 @@ async def lessons_handler(message: Message):
         "Выберите раздел через меню."
     )
 
-# async def main():
+async def main():
 
-#     print("Бот запущен!")
+    print("Бот запущен!")
 
-#     await dp.start_polling(bot)
+    await dp.start_polling(bot)
 
-# if __name__ == "__main__":
-#     asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())
