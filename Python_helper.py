@@ -1,5 +1,6 @@
 import asyncio
 import os   
+from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, F
 from aiogram.types import (
     Message,
@@ -7,9 +8,14 @@ from aiogram.types import (
     KeyboardButton
 )   
 
-BOT_TOKEN = os.getenv("BOT_TOKEN") 
+
+load_dotenv()
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+ADMIN_ID = int(os.getenv("ADMIN_ID"))
 
 bot = Bot(token=BOT_TOKEN)
+
 dp = Dispatcher()
 
 lessons = {
