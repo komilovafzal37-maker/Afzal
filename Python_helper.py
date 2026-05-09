@@ -1,13 +1,13 @@
 import asyncio
-
+import os   
 from aiogram import Bot, Dispatcher, F
 from aiogram.types import (
     Message,
     ReplyKeyboardMarkup,
     KeyboardButton
-)
+)   
 
-BOT_TOKEN = "8781012468:AAGvI-VXhw5oA6zZJHuqEkC562jEZvATb_0"
+BOT_TOKEN = os.getenv("BOT_TOKEN") 
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
@@ -255,11 +255,11 @@ async def lessons_handler(message: Message):
         "Выберите раздел через меню."
     )
 
-# async def main():
+async def main():
 
-#     print("Бот запущен!")
+    print("Бот запущен!")
 
-#     await dp.start_polling(bot)
+    await dp.start_polling(bot)
 
-# if __name__ == "__main__":
-#     asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())
